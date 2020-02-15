@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Namesake: A startup name generator',
+      title: 'Namesake: A startup name suggestor',
       home: RandomWords()
     );
   }
@@ -35,6 +35,12 @@ class RandomWordsState extends State<RandomWords> {
         _alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: _alreadySaved ? Colors.red : null
       ),
+      onTap: () {
+        setState(() {
+          if (_alreadySaved) _saved.remove(pair);
+          else _saved.add(pair);
+        });
+      },
     );
   }
 
@@ -56,7 +62,7 @@ class RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Namesake: A startup name generator'),
+        title: Text('Namesake: A startup name suggestor'),
       ),
       body: _buildSuggestions(),
     );
